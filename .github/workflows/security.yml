@@ -1,0 +1,40 @@
+name: Security audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: npm audit (fail on high or critical)
+        # Match l'invariant du package.json: prepublishOnly run audit:high.
+        # On garde le meme seuil pour qu'un push ne masque pas une vuln que
+        # le pre-publish refuserait.
+        run: npm audit --audit-level=high
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify dist artifacts
+        run: |
+          test -f dist/index.cjs || (echo "missing dist/index.cjs" && exit 1)
+          test -f dist/index.mjs || (echo "missing dist/index.mjs" && exit 1)
+          test -f dist/index.d.ts || (echo "missing dist/index.d.ts" && exit 1)
+          echo "✓ All dist artifacts present"

@@ -1,0 +1,70 @@
+{
+  "name": "@inopay/web",
+  "version": "0.1.0-alpha.3",
+  "description": "Inopay Web SDK \u2014 TypeScript client for African capital markets infrastructure (BRVM, BVMAC, GSE).",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "prepublishOnly": "npm run audit:high && npm run build",
+    "audit:high": "npm audit --audit-level=high"
+  },
+  "keywords": [
+    "inopay",
+    "brokerage",
+    "brokerage-as-a-service",
+    "brvm",
+    "bvmac",
+    "gse",
+    "africa",
+    "west-africa",
+    "uemoa",
+    "waemu",
+    "cemac",
+    "ghana",
+    "fintech",
+    "fintech-africa",
+    "kyc",
+    "kyc-portable",
+    "ed25519",
+    "sandbox",
+    "sandbox-api",
+    "openapi",
+    "rest-api",
+    "amf-umoa",
+    "cosumaf",
+    "sec-ghana",
+    "bceao",
+    "embedded-finance",
+    "capital-markets",
+    "stock-broker"
+  ],
+  "author": "Inopay",
+  "license": "MIT",
+  "homepage": "https://getinopay.com/fr/developers/sdk",
+  "repository": "https://getinopay.com",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "typescript": "^5.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

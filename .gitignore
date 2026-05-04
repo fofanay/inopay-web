@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tgz
+*.tar.gz
+
+# Logs & misc
+*.log
+.DS_Store
+*.tsbuildinfo
+
+# Env & secrets
+.env
+.env*.local
+*.pem
+*.key
+
+# Claude Code
+.claude/settings.local.json
